@@ -11,6 +11,7 @@ function cn(...inputs) {
 }
 
 const MOCK_DELAY = 600;
+
 let db = [
   { id: 1, name: 'Ergonomic Chair', sku: 'FUR-001', price: 299.99, stock: 15 },
   { id: 2, name: 'Mechanical Keyboard', sku: 'TEC-042', price: 129.50, stock: 42 }
@@ -21,7 +22,8 @@ const mockApi = {
     if (Math.random() < 0.05) rej("Server connectivity issue.");
     else res([...db]);
   }, MOCK_DELAY)),
-  
+
+  //Creates a new item
   createItem: (item) => new Promise((res, rej) => setTimeout(() => {
     if (db.find(i => i.sku === item.sku)) rej("SKU already exists.");
     const newItem = { ...item, id: Date.now(), price: parseFloat(item.price), stock: parseInt(item.stock) };
@@ -29,11 +31,13 @@ const mockApi = {
     res(newItem);
   }, MOCK_DELAY)),
 
+  //Updates the item
   updateItem: (item) => new Promise((res) => setTimeout(() => {
     db = db.map(i => i.id === item.id ? item : i);
     res(item);
   }, MOCK_DELAY)),
-  
+
+  //Deletes the item
   deleteItem: (id) => new Promise((res) => setTimeout(() => {
     db = db.filter(i => i.id !== id);
     res();
