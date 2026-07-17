@@ -1,6 +1,6 @@
 # InventoryManagementSystem
 This project allows users to add, remove, or edit items through an easy and clear UI.  
-You can add, modify, or delete items from the list. 
+This project is fairly straightforward, allowing you to create(add) new items, Update(edit) items, and Delete items from the database(list).
 To run this code locally, you'll need the following:
 
 # Core Utilities
