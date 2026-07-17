@@ -11,17 +11,20 @@ function cn(...inputs) {
 }
 
 const MOCK_DELAY = 800;
+//Database
 let db = [
   { id: 1, name: 'Ergonomic Chair', sku: 'FUR-001', price: 299.99, stock: 15 },
   { id: 2, name: 'Mechanical Keyboard', sku: 'TEC-042', price: 129.50, stock: 42 }
 ];
+
 
 const mockApi = {
   fetchItems: () => new Promise((res, rej) => setTimeout(() => {
     if (Math.random() < 0.05) rej("Connectivity error: Server unavailable.");
     else res([...db]);
   }, MOCK_DELAY)),
-  
+
+  //Create an item
   createItem: (item) => new Promise((res, rej) => setTimeout(() => {
     if (db.find(i => i.sku === item.sku)) rej("SKU already exists in database.");
     const newItem = { ...item, id: Date.now(), price: parseFloat(item.price), stock: parseInt(item.stock) };
@@ -29,11 +32,13 @@ const mockApi = {
     res(newItem);
   }, MOCK_DELAY)),
 
+  //Update an item
   updateItem: (item) => new Promise((res) => setTimeout(() => {
     db = db.map(i => i.id === item.id ? item : i);
     res(item);
   }, MOCK_DELAY)),
-  
+
+  //Delete an item
   deleteItem: (id) => new Promise((res) => setTimeout(() => {
     db = db.filter(i => i.id !== id);
     res();
