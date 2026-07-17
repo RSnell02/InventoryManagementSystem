@@ -3,8 +3,13 @@ This project allows users to add, remove, or edit items through an easy and clea
 This project is fairly straightforward, allowing you to create(add) new items, Update(edit) items, and Delete items from the database(list).
 To run this code locally, you'll need the following:
 
-# Core Utilities
+# Initialize your React project
+npx create-react-app inventory-manager
+cd inventory-manager
+
+# Install the necessary dependencies
 npm install lucide-react clsx tailwind-merge
 
-# Styling (assuming Tailwind is configured)
+# Install Tailwind CSS (required for styling)
 npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
